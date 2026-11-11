@@ -1,0 +1,12 @@
+{
+  "id": "{A6E9932C-3744-42F0-81E7-D81ED3CC1C36}",
+  "name": "AlfenWallbox",
+  "type": 3,
+  "vendor": "Alfen",
+  "aliases": ["Alfen Wallbox"],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "ALFEN",
+  "url": "https://github.com/peterchrisben/AlfenWB"
+}

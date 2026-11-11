@@ -1,0 +1,73 @@
+{
+  "elements": [
+    { "type": "Label", "name": "Overview", "caption": "", "bold": true },
+    { "type": "Label", "name": "Hints", "caption": "", "visible": false },
+    {
+      "type": "ExpansionPanel", "name": "PanelSetup", "caption": "Einrichtung", "expanded": true,
+      "items": [
+        {
+          "type": "RowLayout",
+          "items": [
+            { "type": "ValidationTextBox", "name": "Host", "caption": "IP-Adresse der Wallbox", "width": "260px" },
+            { "type": "NumberSpinner", "name": "Port", "caption": "Port", "minimum": 1, "maximum": 65535, "width": "140px" },
+            {
+              "type": "Select", "name": "Socket", "caption": "Ladepunkt", "width": "260px",
+              "options": [
+                { "caption": "1 (Eve Single / links)", "value": 1 },
+                { "caption": "2 (Eve Double rechts)", "value": 2 }
+              ]
+            }
+          ]
+        },
+        { "type": "Label", "caption": "Voraussetzung an der Wallbox (ACE Service Installer): Lizenz „Active Load Balancing“, Datenquelle „Energy Management System“, unter „TCP/IP EMS“ Modus „Socket“, Lesen und Schreiben erlaubt. Die Wallbox muss per Netzwerkkabel angeschlossen sein." }
+      ]
+    },
+    {
+      "type": "ExpansionPanel", "name": "PanelControl", "caption": "Steuerung", "expanded": false,
+      "items": [
+        { "type": "CheckBox", "name": "AllowControl", "caption": "Steuerung freigeben (das Modul gibt der Wallbox den Ladestrom vor)" },
+        { "type": "Label", "caption": "Ohne Häkchen wird nur gelesen. Mit Häkchen sendet das Modul die Vorgabe laufend neu, damit sie in der Wallbox nicht abläuft." },
+        {
+          "type": "RowLayout",
+          "items": [
+            { "type": "NumberSpinner", "name": "MinCurrent", "caption": "Kleinster Ladestrom (A)", "minimum": 6, "maximum": 32, "width": "220px" },
+            { "type": "NumberSpinner", "name": "MaxCurrent", "caption": "Größter Ladestrom (A)", "minimum": 6, "maximum": 32, "width": "220px" },
+            {
+              "type": "Select", "name": "Phases", "caption": "Geladen wird", "width": "220px",
+              "options": [
+                { "caption": "3-phasig", "value": 3 },
+                { "caption": "1-phasig", "value": 1 }
+              ]
+            }
+          ]
+        },
+        { "type": "CheckBox", "name": "PhaseSwitching", "caption": "Wallbox darf zwischen 1- und 3-phasig umschalten (in ACE „Allow 1- and 3-phased charging“ aktiviert)" },
+        { "type": "NumberSpinner", "name": "PhaseUpDelay", "caption": "Erst auf 3 Phasen hochschalten, wenn die Leistung so lange reicht (Sekunden)", "minimum": 0, "maximum": 3600, "width": "560px" }
+      ]
+    },
+    {
+      "type": "ExpansionPanel", "name": "PanelEM", "caption": "Energie Manager einrichten", "expanded": false,
+      "items": [
+        { "type": "Label", "name": "EnergyManager", "caption": "" }
+      ]
+    },
+    {
+      "type": "ExpansionPanel", "caption": "Abfrage", "expanded": false,
+      "items": [
+        { "type": "NumberSpinner", "name": "Interval", "caption": "Wallbox abfragen alle (Sekunden)", "minimum": 2, "maximum": 60, "width": "280px" }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "RowLayout",
+      "items": [
+        { "type": "Button", "caption": "Verbindung testen", "onClick": "ALFEN_TestConnection($id);" },
+        { "type": "Label", "name": "Result", "caption": "" }
+      ]
+    }
+  ],
+  "status": [
+    { "code": 201, "icon": "error", "caption": "Wallbox nicht erreichbar" }
+  ]
+}
