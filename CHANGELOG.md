@@ -2,6 +2,17 @@
 
 ## Version 1.0
 
+### Build 2 (12.11.2026)
+
+#### Neu
+- „Letzte Meldung“ nennt den Grund, wenn wegen zu kleiner Leistung pausiert wird (z. B. „Ladepause: 3.000 W reichen nicht für 3 Phasen (mindestens 4.140 W)“), und meldet, wenn die Leistung wieder reicht
+
+#### Behoben
+- „Phasen (Wallbox)“ zeigte „0“, solange die Wallbox noch nichts gemeldet hat – jetzt „unbekannt“
+
+#### Dokumentation
+- Ergebnisse des ersten Praxistests an einer Eve Single S-line; was der Energie Manager in den Modi schreibt; Hinweis zu Zeitstempeln
+
 ### Build 1 (11.11.2026)
 
 #### Neu

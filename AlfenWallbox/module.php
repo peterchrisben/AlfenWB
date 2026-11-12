@@ -555,6 +555,24 @@ class AlfenWallbox extends IPSModule
             $ampere = (float) $target['current'] < $min ? 0.0 : min($max, (float) $target['current']);
             $this->SetValueIfChanged('TargetPower', round($ampere * self::VOLTAGE * $phases));
         }
+        // Klartext, wenn die vorgegebene Leistung für die aktuelle Phasenzahl nicht reicht
+        $tooLow = $allowed && $target['mode'] === 'power' && (float) $target['power'] > 0 && $ampere === 0.0;
+        if ($tooLow) {
+            $text = sprintf('Ladepause: %s W reichen nicht für %s (mindestens %s W).',
+                number_format((float) $target['power'], 0, ',', '.'),
+                $phases === 1 ? '1 Phase' : '3 Phasen',
+                number_format($min * self::VOLTAGE * $phases, 0, ',', '.'));
+            if ($phases === 3 && $this->ReadPropertyBoolean('PhaseSwitching') && (int) $this->GetValue('PhaseMode') === 3) {
+                $text .= ' Die Phasenwahl steht fest auf 3-phasig.';
+            } elseif ($phases === 3 && !$this->ReadPropertyBoolean('PhaseSwitching')) {
+                $text .= ' Die Phasenumschaltung ist im Modul nicht freigegeben.';
+            }
+            $this->Message($text, 0);
+        } elseif (!empty($run['tooLow']) && $allowed && $ampere > 0) {
+            $this->Message(sprintf('Leistung reicht wieder: Vorgabe %s A, %d-phasig.', number_format($ampere, 1, ',', ''), $phases), 0);
+        }
+        $run['tooLow'] = $tooLow;
+
         if (!$allowed) {
             $ampere = 0.0;
         }
@@ -630,7 +648,7 @@ class AlfenWallbox extends IPSModule
 
         // Wallbox
         $this->RegisterVariableFloat('AppliedCurrent', 'Ladestrom (wirksam)', $this->Number(' A', 1), 200);
-        $this->RegisterVariableInteger('ActivePhases', 'Phasen (Wallbox)', $this->IntegerText([1 => '1-phasig', 3 => '3-phasig']), 210);
+        $this->RegisterVariableInteger('ActivePhases', 'Phasen (Wallbox)', $this->IntegerText([0 => 'unbekannt', 1 => '1-phasig', 3 => '3-phasig']), 210);
         $this->RegisterVariableBoolean('SetpointAccepted', 'Vorgabe wird berücksichtigt', $this->BoolText('Nein', 'Ja'), 220);
         $this->RegisterVariableInteger('ValidRemaining', 'Vorgabe gültig noch', $this->Number(' s', 0), 230);
         $this->RegisterVariableFloat('SafeCurrent', 'Sicherer Strom (ohne Vorgabe)', $this->Number(' A', 1), 240);
@@ -858,7 +876,7 @@ class AlfenWallbox extends IPSModule
         return array_merge([
             'fails' => 0, 'swap' => false, 'lastPoll' => 0, 'lastInfo' => 0, 'lastStation' => 0,
             'lastWrite' => 0, 'lastAmps' => null, 'justWrote' => false,
-            'above' => 0, 'switch' => null, 'phaseBlock' => 0
+            'above' => 0, 'switch' => null, 'phaseBlock' => 0, 'tooLow' => false
         ], $run);
     }
 

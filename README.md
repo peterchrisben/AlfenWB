@@ -1,11 +1,11 @@
 # AlfenWB – Alfen Wallbox für Symcon
 
-Aktuelle Version: 1.0 (Build 1)
+Aktuelle Version: 1.0 (Build 2)
 
 Bindet eine **Alfen Eve Single (S-line, Pro-line)** oder **Eve Double** lokal über Modbus TCP in Symcon ein – ohne Cloud.
 Das Modul liest Zustand und Messwerte und stellt einfache Stellgrößen bereit, die der **Energie Manager** von Symcon direkt bedienen kann.
 
-> Stand Build 1: gegen eine nachgebaute Wallbox getestet (Simulation), **noch nicht an einer echten Alfen**. Rückmeldungen sind willkommen.
+> Stand: an einer Alfen Eve Single S-line 11 kW im Praxistest (Lesen, Stromvorgabe, Pause, Phasenumschaltung und Energie Manager „Aktiv/Inaktiv“ bestätigt). Der Energie Manager im Modus „Automatisch“ bei Sonne ist noch offen. Rückmeldungen sind willkommen.
 
 ## Was das Modul macht
 
@@ -51,7 +51,9 @@ Im Energie Manager ein **Elektrofahrzeug** mit Vorlage „Benutzerdefiniert“ a
 Damit gilt: **Automatisch** = Überschussladen, **Aktiv** = Laden mit voller Leistung, **Inaktiv** = kein Laden.
 Wer lieber in Ampere regelt, nimmt stattdessen **Ladestrom (Soll)** mit Einheit Ampere.
 
-Liegt die Leistung unter dem kleinsten Ladestrom (3-phasig 4140 W, 1-phasig 1380 W), pausiert das Modul.
+Liegt die Leistung unter dem kleinsten Ladestrom (3-phasig 4140 W, 1-phasig 1380 W), pausiert das Modul und schreibt den Grund in „Letzte Meldung“.
+
+So schreibt der Energie Manager (im Praxistest abgelesen): „Inaktiv“ = 0 W und Laden erlaubt aus, „Aktiv“ = 11040 W und Laden erlaubt an, „Automatisch“ ohne Überschuss = 0 W und aus (seine Kachel meldet dann „verfügbarer Ladestrom zu gering“).
 
 ## Phasenumschaltung
 
@@ -85,7 +87,9 @@ Automatik (bei Vorgabe in Watt):
 | Temperatur Platine, Strom/Spannung L1–L3 | Messwerte |
 | Erreichbar, Letzte Meldung | Verbindung und Klartext-Meldungen |
 
-Die letzte Vorgabe (Strom **oder** Leistung) gilt; die jeweils andere Variable wird zur Anzeige nachgeführt.
+Die letzte Vorgabe (Strom **oder** Leistung) gilt; die jeweils andere Variable wird zur Anzeige nachgeführt. „Ladeleistung (Soll)“ und „Ladestrom (Soll)“ sind also dieselbe Vorgabe in zwei Einheiten.
+
+Werte werden nur geschrieben, wenn sie sich ändern. Der Zeitstempel von „Erreichbar“ oder „Letzte Meldung“ bleibt deshalb stehen, solange sich nichts ändert.
 
 ## Funktionen
 
