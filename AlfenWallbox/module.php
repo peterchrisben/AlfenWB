@@ -219,6 +219,9 @@ class AlfenWallbox extends IPSModule
             $this->ReadStation($modbus, $run);
 
             $run['fails'] = 0;
+            if ($this->GetStatus() === 201) {
+                $this->Message('Wallbox wieder erreichbar.', KL_MESSAGE);
+            }
             $this->Publish($data, $run);
             if ($this->ReadPropertyBoolean('AllowControl')) {
                 $this->Control($modbus, $data, $run);
@@ -532,7 +535,7 @@ class AlfenWallbox extends IPSModule
                 if ($refused !== '') {
                     $run['switch'] = null;
                     $run['phaseBlock'] = $now + self::PHASE_BLOCK;
-                    $this->Message('Phasenumschaltung abgelehnt (' . $refused . '). In ACE „Allow 1- and 3-phased charging“ prüfen. Es wird mit ' . $actual . ' Phase(n) weitergeladen.', KL_WARNING);
+                    $this->Message('Phasenumschaltung abgelehnt (' . $refused . '). In ACE die Option „Allow 1- and 3-phased charging“ bzw. „Allow single-/multiphase charging“ prüfen. Es wird mit ' . $actual . ' Phase(n) weitergeladen.', KL_WARNING);
                     $want = $actual;
                 }
             }

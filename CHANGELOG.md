@@ -2,6 +2,15 @@
 
 ## Version 1.0
 
+### Build 3 (12.11.2026)
+
+#### Neu
+- Meldung „Wallbox wieder erreichbar“, sobald die Verbindung nach einem Ausfall zurück ist (vorher blieb „Wallbox nicht erreichbar“ in „Letzte Meldung“ stehen)
+
+#### Dokumentation
+- Die ACE-Option für die Phasenumschaltung heißt je nach Version „Allow single-/multiphase charging“ oder „Allow 1- and 3-phased charging“ – im Formular und in der Anleitung stehen jetzt beide Namen
+- Hinweis, was der sichere Strom bei einem Ausfall von Symcon oder Netzwerk bewirkt
+
 ### Build 2 (12.11.2026)
 
 #### Neu

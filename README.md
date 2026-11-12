@@ -1,6 +1,6 @@
 # AlfenWB – Alfen Wallbox für Symcon
 
-Aktuelle Version: 1.0 (Build 2)
+Aktuelle Version: 1.0 (Build 3)
 
 Bindet eine **Alfen Eve Single (S-line, Pro-line)** oder **Eve Double** lokal über Modbus TCP in Symcon ein – ohne Cloud.
 Das Modul liest Zustand und Messwerte und stellt einfache Stellgrößen bereit, die der **Energie Manager** von Symcon direkt bedienen kann.
@@ -13,7 +13,7 @@ Das Modul liest Zustand und Messwerte und stellt einfache Stellgrößen bereit, 
 - **Leistung statt Ampere:** Der Energie Manager gibt eine Leistung in Watt vor, das Modul rechnet in Strom um (230 V je Phase) und schaltet auf Wunsch selbst zwischen 1- und 3-phasig um.
 - **Klartext:** Status („Lädt“, „Angesteckt – Wallbox gibt nicht frei“ …), Hinweise zur Einrichtung der Wallbox direkt im Formular.
 - **Ladevorgang:** Energie von Anstecken bis Abstecken, dazu der letzte Ladevorgang.
-- **Sicher bei Ausfall:** Fällt Symcon aus, läuft die Vorgabe in der Wallbox ab und sie nimmt ihren sicheren Strom (0 A = lädt nicht).
+- **Sicher bei Ausfall:** Fällt Symcon oder das Netzwerk aus, läuft die Vorgabe in der Wallbox ab und sie nimmt ihren sicheren Strom (0 A = lädt nicht, 6 A = lädt von selbst mit 6 A). Ausfall und Rückkehr der Verbindung stehen in „Letzte Meldung“ und im Meldungsfenster.
 
 ## Voraussetzungen
 
@@ -24,7 +24,7 @@ Das Modul liest Zustand und Messwerte und stellt einfache Stellgrößen bereit, 
   1. *Load balancing → Active balancing*: „Active Load Balancing“ an, Data Source **Energy Management System**
   2. *TCP/IP EMS*: Modus **Socket**, Lesen und Schreiben der Maximalströme erlauben, Validity time 60 s (oder mehr)
   3. **Safe current**: Strom, mit dem die Wallbox ohne gültige Vorgabe lädt. Soll ohne Symcon **nicht** geladen werden: **0 A**.
-  4. Optional: „Allow 1- and 3-phased charging“, wenn das Modul die Phasen umschalten soll
+  4. Optional: „Allow single-/multiphase charging“ (in älteren ACE-Versionen „Allow 1- and 3-phased charging“), wenn das Modul die Phasen umschalten soll
 - Die Wallbox erlaubt höchstens zwei Modbus-Verbindungen gleichzeitig. Das Modul öffnet je Abfrage eine kurze Verbindung.
 
 ## Einrichtung in Symcon

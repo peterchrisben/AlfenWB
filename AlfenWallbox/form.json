@@ -41,7 +41,7 @@
             }
           ]
         },
-        { "type": "CheckBox", "name": "PhaseSwitching", "caption": "Wallbox darf zwischen 1- und 3-phasig umschalten (in ACE „Allow 1- and 3-phased charging“ aktiviert)" },
+        { "type": "CheckBox", "name": "PhaseSwitching", "caption": "Wallbox darf zwischen 1- und 3-phasig umschalten (in ACE „Allow single-/multiphase charging“ bzw. „Allow 1- and 3-phased charging“ aktiviert)" },
         { "type": "NumberSpinner", "name": "PhaseUpDelay", "caption": "Erst auf 3 Phasen hochschalten, wenn die Leistung so lange reicht (Sekunden)", "minimum": 0, "maximum": 3600, "width": "560px" }
       ]
     },

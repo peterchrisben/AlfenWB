@@ -21,6 +21,8 @@ Praxistest 11.11.2026 (Eve Single S-line 11 kW, Fiat 500e): Lesen, Strom, Vorgab
 | Phasen-Automatik | Vorgabe 2000 W → 1-phasig; 6000 W → nach Wartezeit 3-phasig | Fahrzeug steckt | ok 11.11. |
 | Symcon aus | Symcon stoppen: nach der Gültigkeitsdauer nimmt die Wallbox den sicheren Strom | Fahrzeug steckt | offen |
 | Meldung bei zu kleiner Leistung (Build 2) | 3000 W, Phasenwahl 3-phasig → „Letzte Meldung“ nennt den Grund; 6000 W → „Leistung reicht wieder“ | Fahrzeug steckt | offen |
+| Phasenwechsel von Hand während des Ladens | 6000 W: 3-phasig → 1-phasig (16 A, ca. 3450 W) → 3-phasig (8,6 A, ca. 6040 W) | Fahrzeug steckt | ok 12.11. |
+| Netzwerk weg (Build 3) | Netzwerkstecker ziehen: „Wallbox nicht erreichbar“; wieder stecken: „Wallbox wieder erreichbar“, Vorgabe wird neu gesendet | sofort | offen |
 | Zweiter Modbus-Client | Läuft die Symcon-Vorlage (ModBus-Gateway) parallel ohne Störung? | sofort | offen |
 
 ## Ideen für später
