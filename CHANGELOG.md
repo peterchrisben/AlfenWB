@@ -2,6 +2,11 @@
 
 ## Version 1.0
 
+### Build 4 (12.11.2026)
+
+#### Behoben
+- Symcon-App (iPhone/iPad): Ja/Nein-Werte („Fahrzeug angesteckt“, „Lädt“, „Vorgabe wird berücksichtigt“, „Erreichbar“) zeigten „Invalid Configuration: type 'Null' is not a subtype of type 'bool'“. Den Optionen der Wertanzeige fehlte der Schalter für die Farbe. Im Browser war die Anzeige in Ordnung.
+
 ### Build 3 (12.11.2026)
 
 #### Neu

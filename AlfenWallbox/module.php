@@ -681,15 +681,23 @@ class AlfenWallbox extends IPSModule
         return ['PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION, 'SUFFIX' => $suffix, 'DIGITS' => $digits];
     }
 
+    /**
+     * Boolean ohne Aktion: Wertanzeige mit Optionen. Jeder Eintrag braucht alle Schalter
+     * (Icon/Farbe überschreiben) – fehlt einer, zeigt die Symcon-App „Invalid Configuration“.
+     */
     private function BoolText(string $false, string $true): array
     {
-        return [
-            'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-            'OPTIONS'      => json_encode([
-                ['Value' => false, 'Caption' => $false, 'IconActive' => false, 'IconValue' => '', 'Color' => -1],
-                ['Value' => true, 'Caption' => $true, 'IconActive' => false, 'IconValue' => '', 'Color' => -1]
-            ])
-        ];
+        $options = [];
+        foreach ([[false, $false], [true, $true]] as [$value, $caption]) {
+            $options[] = [
+                'Value' => $value, 'Caption' => $caption,
+                'IconActive' => false, 'IconValue' => '',
+                'ColorActive' => false, 'ColorValue' => -1,
+                'ContentColorActive' => false, 'ContentColorValue' => -1,
+                'Color' => -1
+            ];
+        }
+        return ['PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION, 'OPTIONS' => json_encode($options)];
     }
 
     /** Integer mit Aktion: Aufzählung. */

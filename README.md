@@ -1,6 +1,6 @@
 # AlfenWB – Alfen Wallbox für Symcon
 
-Aktuelle Version: 1.0 (Build 3)
+Aktuelle Version: 1.0 (Build 4)
 
 Bindet eine **Alfen Eve Single (S-line, Pro-line)** oder **Eve Double** lokal über Modbus TCP in Symcon ein – ohne Cloud.
 Das Modul liest Zustand und Messwerte und stellt einfache Stellgrößen bereit, die der **Energie Manager** von Symcon direkt bedienen kann.

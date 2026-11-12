@@ -23,6 +23,7 @@ Praxistest 11.11.2026 (Eve Single S-line 11 kW, Fiat 500e): Lesen, Strom, Vorgab
 | Meldung bei zu kleiner Leistung (Build 2) | 3000 W, Phasenwahl 3-phasig → „Letzte Meldung“ nennt den Grund; 6000 W → „Leistung reicht wieder“ | Fahrzeug steckt | offen |
 | Phasenwechsel von Hand während des Ladens | 6000 W: 3-phasig → 1-phasig (16 A, ca. 3450 W) → 3-phasig (8,6 A, ca. 6040 W) | Fahrzeug steckt | ok 12.11. |
 | Netzwerk weg (Build 3) | Netzwerkstecker ziehen: „Wallbox nicht erreichbar“; wieder stecken: „Wallbox wieder erreichbar“, Vorgabe wird neu gesendet | sofort | offen |
+| Anzeige in der Symcon-App (Build 4) | iPhone/iPad: „Fahrzeug angesteckt“, „Lädt“, „Vorgabe wird berücksichtigt“, „Erreichbar“ zeigen Ja/Nein statt roter Fehlermeldung | sofort | offen |
 | Zweiter Modbus-Client | Läuft die Symcon-Vorlage (ModBus-Gateway) parallel ohne Störung? | sofort | offen |
 
 ## Ideen für später
